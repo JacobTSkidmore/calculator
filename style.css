@@ -24,22 +24,27 @@ body {
 
 .buttons {
     display: flex;
-    gap: 2px;
-    flex: 2 1 auto;
+    gap: 3px;
+    flex: 3 1 auto;
+}
+
+button {
+    border-radius: 10%;
+    border: none;
 }
 
 .left-side {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    flex: 1 1 auto;
+    gap: 3px;
+    flex: 3;
 }
 
 .right-side {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    flex: 1 1 auto;
+    gap: 3px;
+    flex: 1;
 }
 
 .right-side button {
@@ -48,19 +53,19 @@ body {
 
 .row {
     display: flex;
-    gap: 2px;
+    gap: 3px;
     flex: 1 1 auto;
 }
 
 .row button {
-    flex: 1 1 auto;
+    flex: 1;
 }
 
 .operand {
     background-color: green;
 }
 
-.clear, .delete, .sign {
+#special button {
     background-color: aqua;
 }
 
