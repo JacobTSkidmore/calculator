@@ -11,7 +11,12 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-    return num1 / num2;
+    if (num2 === '0') {
+        return 'Nope. Press AC'
+    }
+    else {
+        return parseFloat((num1 / num2).toFixed(5));
+    }
 }
 
 let operand1 = "";
@@ -44,8 +49,14 @@ function whatClicked(event) {
     targetClass = event.target.className;
     targetValue = event.target.value;
     console.log(targetClass, targetValue)
-    if (targetClass === 'operator' && targetValue !== '=') {
-        event.target.classList.add('active')
+    if (targetClass === 'operator' && operatorClicked && targetValue !== '=') {
+        doMath(operand1, operand2, operator);
+        operator = targetValue;
+        event.target.classList.add('active');
+        operatorClicked = true;
+    }
+    else if (targetClass === 'operator' && targetValue !== '=') {
+        event.target.classList.add('active');
         operator = targetValue;
         operatorClicked = true;
     }
@@ -65,6 +76,49 @@ function whatClicked(event) {
         operand2 = "";
         operator = "";
         display.textContent = '0';
+        document.querySelector('.active').classList.remove('active');
+    }
+    else if (targetClass === 'delete') {
+        let newNum;
+        if (operatorClicked === false) {
+            //remove last character from operand1 update display
+            newNum = operand1.slice(0, -1);
+            operand1 = newNum;
+            display.textContent = operand1;
+        }
+        else if (operatorClicked === true) {
+            //last character from operand2 and update
+            newNum = operand2.slice(0, -1);
+            operand2 = newNum;
+            display.textContent = operand2;
+        }
+    }
+    else if (targetClass === 'sign') {
+        let newNum;
+        if (operatorClicked === false) {
+            if (operand1[0] === '-') {
+                newNum = operand1.substring(1);
+                operand1 = newNum;
+                display.textContent = operand1;
+            }
+            else if (operand1[0] !== '-') {
+                newNum = '-' + operand1;
+                operand1 = newNum;
+                display.textContent = operand1;
+            }
+        }
+        else if (operatorClicked === true) {
+            if (operand2[0] === '-') {
+                newNum = operand2.substring(1);
+                operand2 = newNum;
+                display.textContent = operand2;
+            }
+            else if (operand2[0] !== '-') {
+                newNum = '-' + operand2;
+                operand2 = newNum;
+                display.textContent = operand2;
+            }
+        }
     }
     console.log(operand1 + operator + operand2);
 }
