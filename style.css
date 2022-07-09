@@ -65,5 +65,9 @@ body {
 }
 
 .operator {
-    background-color: orange;
+    background-color: rgb(255, 140, 0);
+}
+
+.active {
+    background-color: rgb(252, 193, 82);
 }
